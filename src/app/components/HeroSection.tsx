@@ -35,10 +35,10 @@ const HeroSection = () => {
             perferendis quo minus!
           </p>
           <div>
-            <button className="px-6 py-3 rounded-full mr-4 w-full sm:w-fit bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 hover:bg-slate-200 text-black">
+            <button className="px-6 py-3 inline-block rounded-full mr-4 w-full sm:w-fit bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 hover:bg-slate-200 text-white">
               Hire Me
             </button>
-            <button className="px-1 py-1 mt-3 rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 w-full sm:w-fit hover:bg-slate-800 text-white">
+            <button className="px-1 py-1 inline-block mt-3 rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 w-full sm:w-fit hover:bg-slate-800 text-white">
               <span className="block bg-[#121212] hover:bg-slate-800 rounded-full px-5 py-2">
                 Download CV
               </span>
