@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, {useState} from "react";
 import ProjectCard from "./ProjectCard";
 import ProjectTag from "./ProjectTag";
 
@@ -68,6 +68,8 @@ const ProjectsSection = () => {
     setTag(newTag);
   };
 
+  const filteredProjects = projectsData.filter((project) => project.tag.includes(tag));
+
   return (
     <>
       <h2 className="text-center text-4xl font-bold text-white mb-2">My Projects</h2>
@@ -89,7 +91,7 @@ const ProjectsSection = () => {
         />
       </div>
       <div className="grid md:grid-cols-3 gap-8 md:gap-12">
-        {projectsData.map((project) => (
+        {filteredProjects.map((project) => (
           <ProjectCard
             key={project.id}
             title={project.title}
