@@ -6,7 +6,7 @@ const ProjectTag: React.FC<{
   isSelected: boolean;
 }> = ({ name, onClick, isSelected }) => {
   const buttonStyles = isSelected
-    ? "text-white bg-purple-500"
+    ? "text-white bg-primary-500"
     : "text-[#ADBE7BE] border-slate-600";
   return (
     <button

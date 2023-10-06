@@ -41,7 +41,7 @@ const EmailSection = () => {
       <div
         className="
       bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))]
-      from-purple-900 to-transparent blur-lg
+      from-primary-900 to-transparent blur-lg
       rounded-full h-80 w-80 z-0 absolute top-3/4 -left-4 transform -translate-x-1/2 -translate-y-1/2"
       ></div>
       <div className="z-10">
@@ -119,7 +119,7 @@ const EmailSection = () => {
           </div>
           <button
             type="submit"
-            className="bg-purple-500 hover:bg-purple-600 text-white font-medium
+            className="bg-primary-500 hover:bg-primary-600 text-white font-medium
           py-2.5 px-5 rounded-lg w-full"
           >
             Send Message
