@@ -1,24 +1,29 @@
-// import {EmailTemplate} from '../../components/email-template';
-import {NextResponse} from 'next/server';
-import {Resend} from 'resend';
+import { NextRequest } from "next/server";
+import nodemailer from "nodemailer";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-const fromEmail = process.env.FROM_EMAIL;
+export async function POST(req: NextRequest) {
+  const body = await req.json();
 
-export async function POST() {
+  const transporter = nodemailer.createTransport({
+    host: process.env.EMAIL_HOST,
+    port: Number(process.env.EMAIL_PORT),
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+
   try {
-    const data = await resend.emails.send({
-      from: 'MusG <portfolio@mustafaguer.com>',
-      to: ['mustafaguer1453@gmail.com'],
-      subject: 'Hello world',
-      react: <>
-        <p>Email Body</p>
-      </>
+    await transporter.sendMail({
+      from: process.env.FROM_EMAIL,
+      to: process.env.TO_EMAIL,
+      subject: body.subject,
+      html: `<p>${body.message}</p><p>Kontakt: ${body.email}</p>`,
     });
-    // react: EmailTemplate({firstName: 'John'}),
-
-    return NextResponse.json(data);
+    return new Response(JSON.stringify(body), { status: 200 });
   } catch (error) {
-    return NextResponse.json({error});
+    return new Response(JSON.stringify({ message: "Could not send email." }), {
+      status: 500,
+    });
   }
 }
