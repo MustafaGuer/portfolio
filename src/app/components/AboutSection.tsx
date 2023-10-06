@@ -6,23 +6,19 @@ import TabButton from "./TabButton";
 
 const TAB_DATA = [
   {
-    titel: "Skills",
+    title: "Skills",
     id: "skills",
     content: (
       <ul className="list-disc pl-2">
-        <li>JavaScript</li>
-        <li>TypeScript</li>
-        <li>React</li>
+        <li>JavaScript/TypeScript</li>
         <li>Next.js</li>
         <li>Node.js</li>
-        <li>Express</li>
         <li>Python</li>
-        <li>Angular</li>
       </ul>
     ),
   },
   {
-    titel: "Education",
+    title: "Education",
     id: "education",
     content: (
       <ul className="list-disc pl-2">
@@ -32,13 +28,26 @@ const TAB_DATA = [
     ),
   },
   {
-    titel: "Experience",
+    title: "Experience",
     id: "experience",
     content: (
       <ul className="list-disc pl-2">
-        <li>01/2023 - {new Date().getMonth() + 1}/{new Date().getFullYear()}  Azizi, Cokbilir & Gür Gbr</li>
-        <li> 08/2022 - 01/2023 Developer Akademie</li>
-        <li>01/2022 - 07-2022 Trans4Mation IT </li>
+        <li>
+          01/2023 - {new Date().getMonth() + 1}/{new Date().getFullYear()}:{" "}
+          Azizi, Cokbilir & Gür Gbr
+        </li>
+        <li> 08/2022 - 01/2023: Developer Akademie</li>
+        <li>01/2022 - 07-2022: Trans4Mation IT </li>
+      </ul>
+    ),
+  },
+  {
+    title: "Certifications",
+    id: "certifications",
+    content: (
+      <ul className="list-disc pl-2">
+        <li>PCEP-30-02</li>
+        <li>PCAP-31-03</li>
       </ul>
     ),
   },
@@ -47,7 +56,7 @@ const TAB_DATA = [
 const AboutSection = () => {
   const [tab, setTab] = useState("skills");
   const [isPending, startTransition] = useTransition();
-
+  
   const handleTabChange = (id: string) => {
     startTransition(() => {
       setTab(id);
@@ -55,7 +64,7 @@ const AboutSection = () => {
   };
 
   return (
-    <section className="text-white">
+    <section id="about" className="text-white">
       <div className="md:grid md:grid-cols-2 gap-8 items-center py-8 px-4 xl:gap-16 sm:py-16 xl:px-16">
         <Image src="/images/about-image.png" alt="" width={500} height={500} />
         <div className="mt-4 md:mt-0 text-left flex flex-col h-full">
@@ -86,6 +95,12 @@ const AboutSection = () => {
               active={tab === "experience"}
             >
               Experience
+            </TabButton>
+            <TabButton
+              selectTab={() => handleTabChange("certifications")}
+              active={tab === "certifications"}
+            >
+              Certifications
             </TabButton>
           </div>
           <div className="mt-8">
