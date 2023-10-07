@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState, useTransition } from "react";
+import React, {useState, useTransition} from "react";
 import Image from "next/image";
 import TabButton from "./TabButton";
+import {motion} from "framer-motion";
 
 const TAB_DATA = [
   {
@@ -18,16 +19,6 @@ const TAB_DATA = [
     ),
   },
   {
-    title: "Education",
-    id: "education",
-    content: (
-      <ul className="list-disc pl-2">
-        <li>Cimdata</li>
-        <li>Developer Akademie</li>
-      </ul>
-    ),
-  },
-  {
     title: "Experience",
     id: "experience",
     content: (
@@ -37,7 +28,7 @@ const TAB_DATA = [
           Azizi, Cokbilir & Gür Gbr
         </li>
         <li> 08/2022 - 01/2023: Developer Akademie</li>
-        <li>01/2022 - 07-2022: Trans4Mation IT </li>
+        <li>01/2022 - 07-2022: Trans4Mation IT</li>
       </ul>
     ),
   },
@@ -56,7 +47,7 @@ const TAB_DATA = [
 const AboutSection = () => {
   const [tab, setTab] = useState("skills");
   const [isPending, startTransition] = useTransition();
-  
+
   const handleTabChange = (id: string) => {
     startTransition(() => {
       setTab(id);
@@ -66,8 +57,22 @@ const AboutSection = () => {
   return (
     <section id="about" className="text-white">
       <div className="md:grid md:grid-cols-2 gap-8 items-center py-8 px-4 xl:gap-16 sm:py-16 xl:px-16">
-        <Image src="/images/about-image.png" alt="" width={500} height={500} />
-        <div className="mt-4 md:mt-0 text-left flex flex-col h-full">
+        <motion.div
+          initial={{opacity: 0, scale: 0.5}}
+          animate={{opacity: 1, scale: 1}}
+          transition={{duration: 0.5}}
+        >
+          <Image
+            src="/images/about-image.jpg"
+            alt=""
+            width={500} height={500}
+            className="h-full object-cover rounded-3xl" />
+        </motion.div>
+        <motion.div
+          initial={{opacity: 0, scale: 0.5}}
+          animate={{opacity: 1, scale: 1}}
+          transition={{duration: 0.5}}
+          className="mt-4 md:mt-0 text-left flex flex-col h-full">
           <h2 className="text-4xl font-bold text-white mb-4">About Me</h2>
           <p className="text-base lg:text-lg">
             I am a full stack web developer with a passion for creating
@@ -85,12 +90,6 @@ const AboutSection = () => {
               Skills
             </TabButton>
             <TabButton
-              selectTab={() => handleTabChange("education")}
-              active={tab === "education"}
-            >
-              Education
-            </TabButton>
-            <TabButton
               selectTab={() => handleTabChange("experience")}
               active={tab === "experience"}
             >
@@ -103,10 +102,11 @@ const AboutSection = () => {
               Certifications
             </TabButton>
           </div>
-          <div className="mt-8">
+          <div
+            className="mt-8">
             {TAB_DATA.find((t) => t.id === tab)!.content}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
